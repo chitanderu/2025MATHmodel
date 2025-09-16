@@ -1,0 +1,79 @@
+workbook_path: scripts/数据_区域双碳目标与路径规划研究（含拆分数据表）.xlsx
+
+# Possible sheet name keywords to auto-detect; first match wins.
+sheet_hints:
+  macro: [宏观, 总量, 人口, GDP, 经济]
+  co2_total: [碳排放, 二氧化碳, CO2]
+  energy_total: [能源消费, 能源总量, 能源平衡, 能源]
+  sector: [部门, 行业, 终端, 产业]
+  energy_type: [品种, 能源结构, 品类, 能源品种]
+
+# Canonical columns and the keywords to detect them within a sheet.
+columns:
+  year: [年份, 年度, 年]
+  region: [地区, 省份, 市, 区域]
+  population: [人口, 常住人口, 户籍人口, 人口总量]
+  gdp: [GDP, 地区生产总值, 生产总值, 国内生产总值]
+  energy_total: [能源消费总量, 能源消费量, 全社会能源消费]
+  co2_total: [碳排放总量, 二氧化碳排放量, CO2排放]
+  # GDP by sector (optional; for 产业结构比重)
+  gdp_primary: [第一产业, 初级产业]
+  gdp_secondary: [第二产业, 工业]
+  gdp_tertiary: [第三产业, 服务业]
+
+# Sector names to standardize and their matching keywords
+sectors:
+  能源供应: [能源供应, 生产与转换, 供给]
+  工业: [工业, 第二产业]
+  建筑: [建筑, 建筑业, 建筑消费]
+  交通: [交通, 运输, 交通运输]
+  居民生活: [居民, 居民生活, 生活]
+  农林: [农林, 农林牧渔, 第一产业]
+
+# Energy types to standardize and their matching keywords
+energy_types:
+  煤炭: [煤, 原煤, 煤炭]
+  油品: [石油, 成品油, 油品, 汽油, 柴油, 煤油]
+  天然气: [天然气, 煤层气]
+  电力: [电力, 电]
+  热力: [热力, 供热]
+  非化石能源: [非化石, 清洁能源, 可再生, 水电, 风电, 太阳能, 核电, 生物质]
+
+# Units configuration and multipliers to base units
+units:
+  base:
+    population: 人
+    gdp: 元
+    energy: 吨标准煤
+    co2: 吨
+  multipliers:
+    人: 1
+    万人: 10000
+    亿人: 100000000
+    元: 1
+    万元: 10000
+    亿元: 100000000
+    吨: 1
+    万吨: 10000
+    吨标准煤: 1
+    万吨标准煤: 10000
+    tce: 1
+    ktce: 1000
+    Mtce: 1000000
+    tCO2: 1
+    ktCO2: 1000
+    MtCO2: 1000000
+
+# Optional emission factors per energy type (tCO2 per 吨标准煤 or per native unit)
+# If provided, pipeline will compute CO2 by type when absent.
+emission_factors:
+  煤炭: null
+  油品: null
+  天然气: null
+  电力: null
+  热力: null
+  非化石能源: 0
+
+# Output directory for generated CSVs
+output_dir: 输出/指标
+
